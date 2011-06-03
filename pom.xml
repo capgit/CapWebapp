@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini</groupId>
-    <artifactId>jsf-template</artifactId>
+    <artifactId>CapWebapp</artifactId>
     <name>RichFaces 4 Application</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -33,7 +33,7 @@
     </properties>
 
     <build>
-        <finalName>jsf-template-${project.version}</finalName>
+        <finalName>CapWebapp-${project.version}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
