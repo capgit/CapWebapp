@@ -1,0 +1,37 @@
+body {
+	background-color: white;
+}
+
+table {
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+.dataTable{
+	width: 50%;
+}
+
+.dataTable th {
+	background: lightblue;	
+	padding: 0px;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+
+.dataTable tr {	
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+		
+}
+.dataTable td {
+	text-align: center;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
