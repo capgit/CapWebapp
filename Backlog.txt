@@ -1,0 +1,13 @@
+Oppgave						Estimat		Pri		Status
+------------------------------------------------------
+Få opp webapp					4t				  Ferdig
+Automatisere					4t		 1		  Ferdig
+Git								1t		 2		  Ferdig
+Persistering					8t		 8		
+spring + spring web flow		8t		 5
+teststrategi					2t		 6
+Help page med tutorials			2t		 3		  Under arbeid
+CSS styling						4t		 4
+"Scrum whiteboard side"			13t		 7
+lage archetype					1t		 10
+deploy + cleanup				4t		 9
