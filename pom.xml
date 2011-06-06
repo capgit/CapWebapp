@@ -10,9 +10,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-<!--		<module>cap-core</module>
+		<module>cap-core</module>
 		<module>cap-service</module>
--->
 		<module>cap-webapp</module>
 	</modules>
 
@@ -76,6 +75,16 @@
 				<version>${org.richfaces.bom.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>cap-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>cap-service</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
