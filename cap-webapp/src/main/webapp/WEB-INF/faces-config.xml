@@ -4,12 +4,12 @@
 
     <managed-bean>
         <managed-bean-name>richBean</managed-bean-name>
-        <managed-bean-class>com.capgemini.RichBean</managed-bean-class>
+        <managed-bean-class>com.capgemini.capcore.scrumboard.RichBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>tutorialBean</managed-bean-name>
-        <managed-bean-class>com.capgemini.tutorial.TutorialBean</managed-bean-class>
+        <managed-bean-class>com.capgemini.capcore.scrumboard.tutorial.TutorialBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>
