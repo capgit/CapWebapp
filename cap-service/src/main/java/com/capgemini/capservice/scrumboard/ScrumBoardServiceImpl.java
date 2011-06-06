@@ -1,5 +1,7 @@
 package com.capgemini.capservice.scrumboard;
 
+import java.util.List;
+
 import com.capgemini.capcore.scrumboard.ScrumBoard;
 import com.capgemini.capcore.scrumboard.ScrumNote;
 
@@ -14,8 +16,12 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromNotStartedToInProgress(java.lang.Long)
 	 */
 	public ScrumBoard moveFromNotStartedToInProgress(Long noteId) {
-		// TODO Auto-generated method stub
-		return null;
+		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getNotStartedList());
+		if(result != null) {
+			scrumBoard.getNotStartedList().remove(result);
+			scrumBoard.getInProgressList().add(result);
+		}
+		return scrumBoard;
 	}
 
 	/* (non-Javadoc)
@@ -51,6 +57,15 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		return scrumBoard;
 	}
 	
+	private ScrumNote findScrumNoteInList(Long noteId, List<ScrumNote> list) {
+		ScrumNote result = null;
+		for (ScrumNote scrumNote : list) {
+			if(scrumNote.getNoteId().equals(noteId)) {
+				result = scrumNote;
+			}
+		}
+		return result;
+	}
 	
 
 }
