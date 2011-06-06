@@ -1,15 +1,19 @@
 package com.capgemini.tutorial;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.richfaces.resource.PostConstructResource;
 
 /**
  * @author scevro
  *
  */
-public class TutorialBean {
+public class TutorialBean implements Serializable{
+
+	/**
+	 * Serial version UId for class.
+	 */
+	private static final long serialVersionUID = 2869098669503469876L;
 
 	private static List<TutorialLink> tutorialLinks;
 	
