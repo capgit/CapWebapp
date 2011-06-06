@@ -1,10 +1,60 @@
+html {
+	padding: 0;
+	margin: 0;
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+
 body {
+	padding: 0;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
 	background-color: white;
+}
+
+form {
+	padding: 0;
+	margin: 0;
+}
+
+hr {
+	display: none;
 }
 
 table {
 	padding: 0px;
 	border-collapse: collapse;
+}
+
+#top {
+	margin: 0 0 15pt 5pt;
+	border: 1px solid #000000;
+	width: 1022px;
+		
+}
+#menu{
+	border: 1px solid #000000;
+	margin: 0 0 0 5pt;
+	background-color: lightblue;
+	float: left;	
+	width: 150px;
+}
+
+#menu .pageNav {
+		
+}
+#menu .pageNav ul{
+		float: left;
+		margin: 0;
+		padding: 0 0 0 5pt;
+		list-style: none;
+}
+#content{
+	border: 1px solid #000000;
+	padding: 5pt 0 0 15pt;
+	float: left;	
+	width: 850px;
 }
 
 .dataTable{
