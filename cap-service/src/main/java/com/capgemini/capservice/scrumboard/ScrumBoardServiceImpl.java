@@ -9,7 +9,8 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	private ScrumBoard scrumBoard;
 	
 	public ScrumBoardServiceImpl() {
-		scrumBoard = ScrumBoard.getInstance();
+//		scrumBoard = ScrumBoard.getInstance();
+		scrumBoard = new ScrumBoard();
 	}
 	
 	/* (non-Javadoc)
@@ -28,9 +29,12 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromInProgressToDone(java.lang.Long)
 	 */
 	public ScrumBoard moveFromInProgressToDone(Long noteId) {
-		// TODO Auto-generated method stub
-		return null;
-		
+		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getInProgressList());
+		if(result != null) {
+			scrumBoard.getInProgressList().remove(result);
+			scrumBoard.getDoneList().add(result);
+		}
+		return scrumBoard;	
 	}
 
 	/* (non-Javadoc)

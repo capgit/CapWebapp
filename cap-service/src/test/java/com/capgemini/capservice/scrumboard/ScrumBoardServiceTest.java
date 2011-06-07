@@ -8,7 +8,12 @@ import org.junit.Test;
 import com.capgemini.capcore.scrumboard.ScrumBoard;
 import com.capgemini.capcore.scrumboard.ScrumNote;
 
-
+/**
+ * Unit test for the ScrumBoardServiceImpl class.
+ * @author Henrik Hahne (Capgemini)
+ * @author Sanjin Cevro (Capgemini)
+ *
+ */
 public class ScrumBoardServiceTest {
 	ScrumBoardService service;
 	ScrumNote aNote;
@@ -23,6 +28,9 @@ public class ScrumBoardServiceTest {
 		aNote3 = createNote(Long.valueOf(3), "Headline 3", "Dette er en test", 12);
 	}
 
+	/**
+	 * Tests that a ScrumNote can be created successfully.
+	 */
 	@Test
 	public void testCreateNotStartedScrumNote() {
 		ScrumBoard board = service.createNotStartedScrumNote(aNote);
@@ -33,16 +41,40 @@ public class ScrumBoardServiceTest {
 	}
 	
 	
+	/**
+	 * Tests that a ScrumNote can be moved from the not started part of the board to the In progress part.
+	 */
 	@Test
 	public void testMoveFromNotStartedToInProgress() {
 		ScrumBoard board = service.createNotStartedScrumNote(aNote);
 		board = service.moveFromNotStartedToInProgress(Long.valueOf(1));
 		assertNotNull(board);
-		assertNotNull(board.getInProgressList());
-		assertEquals(1, board.getInProgressList().size());
 		assertEquals(0, board.getNotStartedList().size());
+		assertEquals(1, board.getInProgressList().size());
 	}
 	
+	/**
+	 * Tests that a ScrumNote can be moved from the in progress part to the done part.
+	 */
+	@Test
+	public void testMoveFromInProgressToDone() {
+		ScrumBoard board = service.createNotStartedScrumNote(aNote);
+		board = service.moveFromNotStartedToInProgress(Long.valueOf(1));
+		board = service.moveFromInProgressToDone(Long.valueOf(1));
+		assertNotNull(board);
+		assertEquals(0, board.getNotStartedList().size());
+		assertEquals(0, board.getInProgressList().size());
+		assertEquals(1, board.getDoneList().size());
+	}
+	
+	/**
+	 * Helper method to create a ScrumNote.
+	 * @param noteId the Id to use, note that this would normally be given by the ORM framework (typically Hibernate)
+	 * @param headline the headline of the note
+	 * @param description the description of the note
+	 * @param estimate the estimate of the wortkload of the task.
+	 * @return a newly created scrumNote.
+	 */
 	private ScrumNote createNote(Long noteId, String headline, String description, Integer estimate) {
 		ScrumNote aNote = new ScrumNote();
 		aNote.setNoteId(noteId);
