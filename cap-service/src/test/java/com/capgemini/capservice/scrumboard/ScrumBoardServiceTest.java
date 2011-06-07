@@ -68,6 +68,18 @@ public class ScrumBoardServiceTest {
 	}
 	
 	/**
+	 * Tests that a ScrumNote can be moved from the in progress part to the not started part.
+	 */
+	@Test
+	public void testMoveFromInprogressToNotStarted() {
+		ScrumBoard board = service.createNotStartedScrumNote(aNote);
+		board = service.moveFromNotStartedToInProgress(Long.valueOf(1));
+		board = service.moveFromInProgressToNotStarted(Long.valueOf(1));
+		assertEquals(1, board.getNotStartedList().size());
+		assertEquals(0, board.getInProgressList().size());
+	}
+	
+	/**
 	 * Helper method to create a ScrumNote.
 	 * @param noteId the Id to use, note that this would normally be given by the ORM framework (typically Hibernate)
 	 * @param headline the headline of the note

@@ -9,7 +9,6 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	private ScrumBoard scrumBoard;
 	
 	public ScrumBoardServiceImpl() {
-//		scrumBoard = ScrumBoard.getInstance();
 		scrumBoard = new ScrumBoard();
 	}
 	
@@ -18,10 +17,7 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	 */
 	public ScrumBoard moveFromNotStartedToInProgress(Long noteId) {
 		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getNotStartedList());
-		if(result != null) {
-			scrumBoard.getNotStartedList().remove(result);
-			scrumBoard.getInProgressList().add(result);
-		}
+		moveFromListAToB(result, scrumBoard.getNotStartedList(), scrumBoard.getInProgressList());
 		return scrumBoard;
 	}
 
@@ -30,10 +26,7 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	 */
 	public ScrumBoard moveFromInProgressToDone(Long noteId) {
 		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getInProgressList());
-		if(result != null) {
-			scrumBoard.getInProgressList().remove(result);
-			scrumBoard.getDoneList().add(result);
-		}
+		moveFromListAToB(result, scrumBoard.getInProgressList(), scrumBoard.getDoneList());
 		return scrumBoard;	
 	}
 
@@ -41,16 +34,18 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromInProgressToNotStarted(java.lang.Long)
 	 */
 	public ScrumBoard moveFromInProgressToNotStarted(Long noteId) {
-		// TODO Auto-generated method stub
-		return null;
+		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getInProgressList());
+		moveFromListAToB(result, scrumBoard.getInProgressList(), scrumBoard.getNotStartedList());
+		return scrumBoard;	
 	}
 
 	/* (non-Javadoc)
 	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromDoneToInProgress(java.lang.Long)
 	 */
 	public ScrumBoard moveFromDoneToInProgress(Long noteId) {
-		// TODO Auto-generated method stub
-		return null;
+		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getDoneList());
+		moveFromListAToB(result, scrumBoard.getDoneList(), scrumBoard.getInProgressList());
+		return scrumBoard;
 	}
 
 	/* (non-Javadoc)
@@ -71,5 +66,17 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		return result;
 	}
 	
-
+	/**
+	 * Move a scrumNote from the source list to the destination list. 
+	 * @param noteToMove the note to move.	
+	 * @param source the source list.
+	 * @param destination the destination list.
+	 */
+	private void moveFromListAToB(ScrumNote noteToMove, List<ScrumNote> source, List<ScrumNote> destination) {
+		ScrumNote result = findScrumNoteInList(noteToMove.getNoteId(), source);
+		if(result != null) {
+			source.remove(result);
+			destination.add(result);
+		}
+	}
 }
