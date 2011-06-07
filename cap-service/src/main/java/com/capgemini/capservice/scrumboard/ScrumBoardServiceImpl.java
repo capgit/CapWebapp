@@ -15,8 +15,8 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		scrumBoard = new ScrumBoard();
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromNotStartedToInProgress(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public ScrumBoard moveFromNotStartedToInProgress(Long noteId) {
 		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getNotStartedList());
@@ -24,8 +24,8 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		return scrumBoard;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromInProgressToDone(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public ScrumBoard moveFromInProgressToDone(Long noteId) {
 		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getInProgressList());
@@ -33,8 +33,8 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		return scrumBoard;	
 	}
 
-	/* (non-Javadoc)
-	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromInProgressToNotStarted(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public ScrumBoard moveFromInProgressToNotStarted(Long noteId) {
 		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getInProgressList());
@@ -42,8 +42,8 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		return scrumBoard;	
 	}
 
-	/* (non-Javadoc)
-	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#moveFromDoneToInProgress(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public ScrumBoard moveFromDoneToInProgress(Long noteId) {
 		ScrumNote result = findScrumNoteInList(noteId, scrumBoard.getDoneList());
@@ -51,8 +51,8 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 		return scrumBoard;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.capgemini.capservice.scrumboard.ScrumBoardService#createNotStartedScrumnote(com.capgemini.capcore.scrumboard.ScrumNote)
+	/**
+	 * {@inheritDoc}
 	 */
 	public ScrumBoard createNotStartedScrumNote(ScrumNote aNote) {
 		scrumBoard.getNotStartedList().add(aNote);
