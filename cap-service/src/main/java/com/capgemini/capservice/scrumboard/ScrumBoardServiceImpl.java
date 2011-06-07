@@ -2,9 +2,12 @@ package com.capgemini.capservice.scrumboard;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.capgemini.capcore.scrumboard.ScrumBoard;
 import com.capgemini.capcore.scrumboard.ScrumNote;
 
+@Service
 public class ScrumBoardServiceImpl implements ScrumBoardService {
 	private ScrumBoard scrumBoard;
 	

@@ -51,6 +51,7 @@
 			so that generated project uses correct version of richfaces. -->
 		<org.richfaces.bom.version>4.0.0-SNAPSHOT</org.richfaces.bom.version>
 		<jstl.version>1.2</jstl.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
 		</properties>
 
 	<dependencyManagement>
@@ -71,6 +72,22 @@
 				<groupId>${project.groupId}</groupId>
 				<artifactId>cap-service</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>3.0.5.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>3.0.5.RELEASE</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
