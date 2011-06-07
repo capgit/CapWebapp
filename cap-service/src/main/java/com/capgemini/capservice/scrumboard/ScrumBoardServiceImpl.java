@@ -73,10 +73,9 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 	 * @param destination the destination list.
 	 */
 	private void moveFromListAToB(ScrumNote noteToMove, List<ScrumNote> source, List<ScrumNote> destination) {
-		ScrumNote result = findScrumNoteInList(noteToMove.getNoteId(), source);
-		if(result != null) {
-			source.remove(result);
-			destination.add(result);
+		if(noteToMove != null) {
+			source.remove(noteToMove);
+			destination.add(noteToMove);
 		}
 	}
 }
