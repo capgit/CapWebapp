@@ -12,7 +12,8 @@
     <ui:define name="title">RichFaces Sample</ui:define>
 
     <ui:define name="body">
-        <h:form prependId="false">
+    	<rich:panel header="Greeter">
+    	        <h:form prependId="false">
             <h:outputLabel value="Name:" for="nameInput" />
             <h:inputText id="nameInput" value="#{richBean.name}">
                 <a4j:ajax event="keyup" render="output" />
@@ -21,7 +22,8 @@
                 <h:outputText value="Hello #{richBean.name}!"
                     rendered="#{not empty richBean.name}" />
             </h:panelGroup>
-        </h:form>       
+        </h:form>  
+    	</rich:panel>
     </ui:define>
 </ui:composition>
 </body>

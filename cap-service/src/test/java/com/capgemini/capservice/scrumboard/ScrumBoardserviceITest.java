@@ -25,7 +25,7 @@ public class ScrumBoardserviceITest extends AbstractJUnit4SpringContextTests{
 
 	@Before
 	public void setUp() {
-		service = applicationContext.getBean(ScrumBoardService.class);
+		service =(ScrumBoardService) applicationContext.getBean("scrumBoardService");
 		aNote = createNote(Long.valueOf(1), "Headline 1", "Dette er en test", 10);
 	}
 
