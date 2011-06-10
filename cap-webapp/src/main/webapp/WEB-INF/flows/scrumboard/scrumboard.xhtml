@@ -11,7 +11,11 @@
 
     <ui:define name="title">RichFaces SampleScrumboard demo</ui:define>
     <ui:define name="body">
-		Dette er en scrumboard demo
+    	<h:form>
+    		Dette er en scrumboard demo.
+			Trykk link for å lage en ScrumNote:
+			<h:commandLink action="createScrumnote" value="Create a Scrum Note Test" />
+    	</h:form>
     </ui:define>
 </ui:composition>
 </body>

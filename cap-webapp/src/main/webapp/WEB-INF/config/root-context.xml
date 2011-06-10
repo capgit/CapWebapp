@@ -5,6 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="scrumBoardAction" class="com.capgemini.scrumboard.ScrumBoardAction">
+		<property name="formObjectClass" value="com.capgemini.scrumboard.ScrumBoardForm" />
 		<property name="actionDelegate" ref="scrumBoardActionDelegate" />
 	</bean>
 </beans>

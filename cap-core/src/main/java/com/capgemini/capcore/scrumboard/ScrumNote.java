@@ -1,11 +1,15 @@
 package com.capgemini.capcore.scrumboard;
 
+import java.io.Serializable;
+
 /**
  * @author Sanjin Cevro (Capgemini)
  * @author Henrik Hahne (Capgemini)
  *
  */
-public class ScrumNote {
+public class ScrumNote implements Serializable {
+
+	private static final long serialVersionUID = 3575153646727198458L;
 
 	private Long noteId;
 	private String headline;

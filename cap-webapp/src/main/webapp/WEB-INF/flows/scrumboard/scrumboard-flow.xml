@@ -7,6 +7,9 @@
 	<var name="richBean" class="com.capgemini.RichBean"/>
 			
 	<view-state id="scrumboard">
+		<transition on="createScrumnote" to="scrumboard">
+			<evaluate expression="scrumBoardAction.createScrumNote" />
+		</transition>
 	</view-state>
 		
 </flow>

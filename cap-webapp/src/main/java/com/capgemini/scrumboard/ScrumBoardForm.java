@@ -1,8 +1,13 @@
 package com.capgemini.scrumboard;
 
+import java.io.Serializable;
+
 import com.capgemini.capcore.scrumboard.ScrumNote;
 
-public class ScrumBoardForm {
+public class ScrumBoardForm implements Serializable {
+
+	private static final long serialVersionUID = 4335179057399237721L;
+
 	ScrumNote newNote;
 
 	/**
@@ -25,8 +30,5 @@ public class ScrumBoardForm {
 	public void reset() {
 		newNote = null;
 	}
-	
-	
-
 
 }
