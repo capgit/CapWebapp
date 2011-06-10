@@ -6,7 +6,6 @@
        	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        	http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces-2.2.xsd">
 
-	<faces:resources />
 
 	<!-- Maps request paths to flows in the flowRegistry; e.g. a path of /hotels/booking looks for a flow with id "hotels/booking" -->
 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
@@ -28,9 +27,6 @@
 	<!-- Dispatches requests mapped to org.springframework.web.servlet.mvc.Controller implementations -->
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 
-	<!-- Dispatches requests mapped to flows to FlowHandler implementations -->
-	<bean class="org.springframework.faces.webflow.JsfFlowHandlerAdapter">
-		<property name="flowExecutor" ref="flowExecutor" />
-	</bean>
+
 
 </beans>
