@@ -2,13 +2,31 @@ package com.capgemini.scrumboard;
 
 import java.io.Serializable;
 
+import com.capgemini.capcore.scrumboard.ScrumBoard;
 import com.capgemini.capcore.scrumboard.ScrumNote;
 
 public class ScrumBoardForm implements Serializable {
 
 	private static final long serialVersionUID = 4335179057399237721L;
+	
+	private ScrumNote newNote = new ScrumNote();
+	private ScrumBoard board;
 
-	ScrumNote newNote;
+	
+	
+	/**
+	 * @return the board
+	 */
+	public ScrumBoard getBoard() {
+		return board;
+	}
+
+	/**
+	 * @param board the board to set
+	 */
+	public void setBoard(ScrumBoard board) {
+		this.board = board;
+	}
 
 	/**
 	 * @return the newNote
@@ -28,7 +46,9 @@ public class ScrumBoardForm implements Serializable {
 	 * Resets all the variables in the form object. 
 	 */
 	public void reset() {
-		newNote = null;
+		newNote = new ScrumNote();
 	}
+
+	
 
 }

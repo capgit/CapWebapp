@@ -1,7 +1,8 @@
 package com.capgemini.scrumboard;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
 
+import com.capgemini.capcore.scrumboard.ScrumBoard;
 import com.capgemini.capcore.scrumboard.ScrumNote;
 import com.capgemini.capservice.scrumboard.ScrumBoardService;
 
@@ -14,10 +15,9 @@ public class ScrumBoardActionDelegate {
 
 	private ScrumBoardService service;
 	
-	public ScrumNote createNewScrumNote(ScrumNote aNewNote) {
-		
+	public ScrumBoard createNewScrumNote(ScrumNote aNewNote) {		
 		//TODO: Make sure the service actually persists the object.
-		return aNewNote;
+		return service.createNotStartedScrumNote(aNewNote);
 	}
 
 	/**
@@ -33,5 +33,25 @@ public class ScrumBoardActionDelegate {
 	public void setService(ScrumBoardService service) {
 		this.service = service;
 	}
+
+	/**
+	 * Gets the newest scrumboard from the service.
+	 * @return a new and fresh scrumboard.
+	 */
+	public ScrumBoard getNewestScrumboard() {
+		return service.getScrumBoard();
+	}
 	
+	/**
+	 * Creates an empty scrum board.
+	 * @return a newly created scrum board.
+	 */
+	public ScrumBoard createEmptyScrumBoard() {
+		//TODO: This is a job for the service perhaps ? 
+		ScrumBoard board = new ScrumBoard();
+		board.setNotStartedList(new ArrayList<ScrumNote>());
+		board.setInProgressList(new ArrayList<ScrumNote>());
+		board.setDoneList(new ArrayList<ScrumNote>());
+		return board;
+	}
 }

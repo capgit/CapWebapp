@@ -1,22 +1,99 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:h="http://java.sun.com/jsf/html" 
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
 
 <body>
-<ui:composition template="../../templates/template.xhtml">
+	<ui:composition template="../../templates/template.xhtml">
 
-    <ui:define name="title">RichFaces SampleScrumboard demo</ui:define>
-    <ui:define name="body">
-    	<h:form>
-    		Dette er en scrumboard demo.
-			Trykk link for å lage en ScrumNote:
-			<h:commandLink action="createScrumnote" value="Create a Scrum Note Test" />
-    	</h:form>
-    </ui:define>
-</ui:composition>
+		<ui:define name="title">RichFaces SampleScrumboard demo</ui:define>
+		<ui:define name="body">
+			<h:form>
+				<rich:panel header="Create a new Scrum Note">
+
+    				Dette er en scrumboard demo.
+					Trykk link for å lage en ScrumNote:<p />
+					<h:outputText  styleClass="outputTextDefault" value="NoteId: " />
+					<h:inputText value="${scrumBoardForm.newNote.noteId}" />
+					<br />
+
+					<h:outputText value="Headline " />
+					<h:inputText value="${scrumBoardForm.newNote.headline}" />
+					<br />
+
+					<h:outputText value="Description: " />
+					<h:inputText value="${scrumBoardForm.newNote.description}" />
+					<br />
+
+					<h:outputText value="Estimate " />
+					<h:inputText value="${scrumBoardForm.newNote.estimate}" />
+					<br />
+
+					<h:commandLink action="createScrumNote" value="Create a Scrum Note" />
+					<br />
+					<h:commandLink action="showScrumBoard" value="Vis scrumboard" />
+				</rich:panel>
+				<p />
+				<h2>SCRUM BOARD</h2>
+				<h:panelGrid columnClasses="panelc valign, valign, valign, valign"
+					columns="4" width="100%">
+					<rich:panel style="width:133px">
+						<f:facet name="header">
+							<h:outputText value="Not started" />
+						</f:facet>
+						<h:dataTable id="src" columns="1"
+							value="#{scrumBoardForm.board.notStartedList}"
+							var="notStartedNote" footerClass="footerClass">
+							<h:column>
+								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
+									<rich:dragSource dragValue="#{notStartedNote}" />
+									<strong><h:outputText value="#{notStartedNote.headline}" /><br/></strong>
+									<h:outputText value="#{notStartedNote.description}" /><br/>
+									<h:outputText value="#{notStartedNote.estimate}" /><br/>
+								</a4j:outputPanel>
+							</h:column>
+						</h:dataTable>
+					</rich:panel>
+
+<!-- 					<rich:panel styleClass="dropTargetPanel"> -->
+<!-- 						<f:facet name="header"> -->
+<!-- 							<h:outputText value="In Progress" /> -->
+<!-- 						</f:facet> -->
+<!-- 						<rich:dropTarget acceptedTypes="php" dropValue="PHP" -->
+<!-- 							dropListener="#{dragDropEventBean.processDrop}" -->
+<!-- 							render="phptable, src" /> -->
+
+<!-- 						<h:dataTable id="phptable" columns="1" -->
+<!-- 							value="#{dragDropBean.targetPHP}" var="fm"> -->
+<!-- 							<h:column> -->
+<!-- 								<h:outputText value="#{fm.name}"></h:outputText> -->
+<!-- 							</h:column> -->
+<!-- 						</h:dataTable> -->
+<!-- 					</rich:panel> -->
+
+<!-- 					<rich:panel styleClass="dropTargetPanel"> -->
+<!-- 						<f:facet name="header"> -->
+<!-- 							<h:outputText value="Done" /> -->
+<!-- 						</f:facet> -->
+<!-- 						<rich:dropTarget acceptedTypes="dotNet" dropValue="DNET" -->
+<!-- 							dropListener="#{dragDropEventBean.processDrop}" -->
+<!-- 							render="dnettable, src" /> -->
+
+<!-- 						<h:dataTable id="dnettable" columns="1" -->
+<!-- 							value="#{dragDropBean.targetDotNet}" var="fm"> -->
+<!-- 							<h:column> -->
+<!-- 								<h:outputText value="#{fm.name}"></h:outputText> -->
+<!-- 							</h:column> -->
+<!-- 						</h:dataTable> -->
+<!-- 					</rich:panel> -->
+				</h:panelGrid>
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
 </body>
 </html>

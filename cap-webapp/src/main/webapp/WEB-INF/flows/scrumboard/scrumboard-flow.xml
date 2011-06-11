@@ -4,11 +4,14 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<!-- TODO: fix this to use the service -->
-	<var name="richBean" class="com.capgemini.RichBean"/>
+	<var name="scrumBoardForm" class="com.capgemini.scrumboard.ScrumBoardForm"/>
 			
 	<view-state id="scrumboard">
-		<transition on="createScrumnote" to="scrumboard">
+		<transition on="createScrumNote" to="scrumboard">
 			<evaluate expression="scrumBoardAction.createScrumNote" />
+		</transition>
+		<transition on="showScrumBoard" to="scrumboard">
+			<evaluate expression="scrumBoardAction.showScrumBoard" />
 		</transition>
 	</view-state>
 		

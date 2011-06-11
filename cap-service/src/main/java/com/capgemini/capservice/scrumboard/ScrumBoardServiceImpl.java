@@ -81,4 +81,15 @@ public class ScrumBoardServiceImpl implements ScrumBoardService {
 			destination.add(noteToMove);
 		}
 	}
+
+	/**
+	 * @return the scrumBoard
+	 */
+	public ScrumBoard getScrumBoard() {
+		return scrumBoard;
+	}
+
+	
+	
+	
 }

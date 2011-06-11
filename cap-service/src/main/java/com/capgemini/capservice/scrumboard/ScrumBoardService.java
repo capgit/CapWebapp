@@ -41,4 +41,10 @@ public interface ScrumBoardService {
 	 */
 	public abstract ScrumBoard createNotStartedScrumNote(ScrumNote aNote);
 	
+	/**
+	 * Gets the scrumBoard you are working on. 
+	 * @return a scrumBoard.
+	 */
+	public abstract ScrumBoard getScrumBoard();
+	
 }
