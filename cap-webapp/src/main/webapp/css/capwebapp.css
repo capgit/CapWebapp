@@ -68,42 +68,33 @@ table {
 	width: 850px;
 }
 
-.dataTable {
+.rf-dt {
 	width: 50%;
-}
-
-.dataTable th {
-	background: lightblue;
-	padding: 0px;
-	border-left: 1px solid;
-	border-right: 1px solid;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-}
-
-.dataTable tr {
-	border-left: 1px solid;
-	border-right: 1px solid;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-}
-
-.dataTable td {
-	text-align: center;
-	border-left: 1px solid;
-	border-right: 1px solid;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
 }
 
 .rf-ind-drag {
 	font-size: 11px;
 	cursor: pointer;
 	width: 100px;
-	border: 1px solid gray;
-	padding: 2px	
+	min-height: 80px;
+	border: 1px dotted gray;
+	padding: 2px;
+	background-color: yellow;	
 }
-.outputTextDefault {
-	min-width: 20px;
-	width: 20px;
+
+td.valign{
+	width: 33%;
+	vertical-align: top;
+}
+
+td.valign div.rf-p{
+	min-height: 450px;	
+}
+
+.note td.header {
+	font-weight: bold;
+}
+td.topAlign {
+	font-weight: bold;
+	vertical-align: top;	
 }

@@ -5,7 +5,11 @@
 
 	<!-- TODO: fix this to use the service -->
 	<var name="scrumBoardForm" class="com.capgemini.scrumboard.ScrumBoardForm"/>
-			
+	
+	<on-start>
+		<evaluate expression="scrumBoardAction.showScrumBoard"/>
+	</on-start>
+	
 	<view-state id="scrumboard">
 		<transition on="createScrumNote" to="scrumboard">
 			<evaluate expression="scrumBoardAction.createScrumNote" />

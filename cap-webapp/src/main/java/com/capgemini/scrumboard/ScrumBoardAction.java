@@ -1,5 +1,6 @@
 package com.capgemini.scrumboard;
 
+import org.richfaces.event.DropEvent;
 import org.springframework.webflow.action.FormAction;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContext;
@@ -15,7 +16,10 @@ import com.capgemini.capcore.scrumboard.ScrumNote;
 //TODO: Validation !
 public class ScrumBoardAction extends FormAction {
 	
-	ScrumBoardActionDelegate actionDelegate;
+	private ScrumBoard scrumBoard;
+
+	public ScrumBoardActionDelegate actionDelegate;
+	
 
 	/* (non-Javadoc)
 	 * @see org.springframework.webflow.action.FormAction#createFormObject(org.springframework.webflow.execution.RequestContext)
@@ -25,6 +29,9 @@ public class ScrumBoardAction extends FormAction {
 		ScrumBoardForm form = (ScrumBoardForm) this.getFormObject(context);
 		form.setNewNote(new ScrumNote());
 		form.setBoard(actionDelegate.getNewestScrumboard());
+		
+		scrumBoard = form.getBoard();
+		
 		return super.createFormObject(context);
 		
 	}
@@ -40,6 +47,10 @@ public class ScrumBoardAction extends FormAction {
 		ScrumNote aNewNote = form.getNewNote();
 		ScrumBoard updatedScrumBoard = actionDelegate.createNewScrumNote(aNewNote);
 		form.setBoard(updatedScrumBoard);
+		form.setNewNote(new ScrumNote());
+		
+		scrumBoard = form.getBoard();
+		
 		return success();
 	}
 
@@ -53,7 +64,40 @@ public class ScrumBoardAction extends FormAction {
 		ScrumBoardForm form = (ScrumBoardForm) this.getFormObject(context);
 		ScrumBoard updatedScrumBoard = actionDelegate.getNewestScrumboard();
 		form.setBoard(updatedScrumBoard);
+		
+		scrumBoard = form.getBoard();
+		
 		return success();
+	}
+	
+	/**
+	 * Handles drop events for inProgress notes
+	 * 
+	 * @param event DropEvent to handle
+	 */
+	public void dropToInProgress(DropEvent event){
+		ScrumNote note = (ScrumNote)event.getDragValue();
+		scrumBoard = actionDelegate.getService().moveFromNotStartedToInProgress(note.getNoteId());
+		scrumBoard = actionDelegate.getService().moveFromDoneToInProgress(note.getNoteId());
+		
+	}
+	/**
+	 * Handles drop events for done notes
+	 * @param event DropEvent to handle
+	 */
+	public void dropToDone(DropEvent event){
+		ScrumNote note = (ScrumNote)event.getDragValue();
+		scrumBoard = actionDelegate.getService().moveFromInProgressToDone(note.getNoteId());
+		
+	}
+	/**
+	 * Handles drop events for not started notes
+	 * @param event DropEvent to handle
+	 */
+	public void dropToNotStarted(DropEvent event){
+		ScrumNote note = (ScrumNote)event.getDragValue();
+		scrumBoard = actionDelegate.getService().moveFromInProgressToNotStarted(note.getNoteId());
+
 	}
 	
 	/**
@@ -68,6 +112,20 @@ public class ScrumBoardAction extends FormAction {
 	 */
 	public void setActionDelegate(ScrumBoardActionDelegate actionDelegate) {
 		this.actionDelegate = actionDelegate;
+	}
+
+	/**
+	 * @return the scrumBoard
+	 */
+	public ScrumBoard getScrumBoard() {
+		return scrumBoard;
+	}
+
+	/**
+	 * @param scrumBoard the scrumBoard to set
+	 */
+	public void setScrumBoard(ScrumBoard scrumBoard) {
+		this.scrumBoard = scrumBoard;
 	}	
 	
 	
