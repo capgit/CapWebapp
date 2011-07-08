@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>cap-core</module>
+		<module>cap-persistence</module>
 		<module>cap-service</module>
 		<module>cap-webapp</module>
 	</modules>
