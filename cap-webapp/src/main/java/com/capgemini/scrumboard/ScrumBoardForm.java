@@ -2,8 +2,8 @@ package com.capgemini.scrumboard;
 
 import java.io.Serializable;
 
-import com.capgemini.capcore.scrumboard.ScrumBoard;
-import com.capgemini.capcore.scrumboard.ScrumNote;
+import com.capgemini.core.domain.ScrumBoard;
+import com.capgemini.core.domain.ScrumNote;
 
 public class ScrumBoardForm implements Serializable {
 
@@ -11,8 +11,6 @@ public class ScrumBoardForm implements Serializable {
 	
 	private ScrumNote newNote = new ScrumNote();
 	private ScrumBoard board;
-
-	
 	
 	/**
 	 * @return the board
@@ -48,7 +46,5 @@ public class ScrumBoardForm implements Serializable {
 	public void reset() {
 		newNote = new ScrumNote();
 	}
-
-	
 
 }

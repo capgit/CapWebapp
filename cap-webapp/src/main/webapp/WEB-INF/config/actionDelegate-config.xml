@@ -5,6 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="scrumBoardActionDelegate" class="com.capgemini.scrumboard.ScrumBoardActionDelegate">
-		<property name="service" ref="scrumBoardService" />
+		<property name="scrumBoardService" ref="scrumBoardService" />
+		<property name="scrumNoteService" ref="scrumNoteService" />
 	</bean>
 </beans>

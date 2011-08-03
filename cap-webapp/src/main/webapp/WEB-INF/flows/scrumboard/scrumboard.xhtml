@@ -17,10 +17,10 @@
 				<rich:panel header="Create a new Scrum Note">
 
     				<table class="note">
-						<tr>
-							<td class="header"><h:outputText value="NoteId:" /></td>
-							<td><h:inputText value="${scrumBoardForm.newNote.noteId}" /></td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td class="header"><h:outputText value="NoteId:" /></td> -->
+<!-- 							<td><h:inputText value="${scrumBoardForm.newNote.noteId}" /></td> -->
+<!-- 						</tr> -->
 						<tr>
 							<td class="header"><h:outputText value="Headline:" /></td>
 							<td><h:inputText value="${scrumBoardForm.newNote.headline}" /></td>
@@ -52,7 +52,7 @@
 							acceptedTypes="inProgressNote"
 							render="inProgress,notStarted" />
 							
-						<h:dataTable id="notStarted" columns="1" value="#{scrumBoardAction.scrumBoard.notStartedList}"
+						<h:dataTable id="notStarted" columns="1" value="#{scrumBoardAction.notStartedList}"
 							var="notStartedNote" footerClass="footerClass">
 							<h:column>
 								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
@@ -75,7 +75,7 @@
 							acceptedTypes="notStartedNote, doneNote"
 							render="inProgress,notStarted,done" />
 
-						<h:dataTable id="inProgress" columns="1" value="#{scrumBoardAction.scrumBoard.inProgressList}" 
+						<h:dataTable id="inProgress" columns="1" value="#{scrumBoardAction.inProgressList}" 
 							var="inProgressNote">
 							<h:column>
 								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
@@ -98,7 +98,7 @@
 							acceptedTypes="inProgressNote"
 							render="inProgress,done" />
 
-						<h:dataTable id="done" columns="1" value="#{scrumBoardAction.scrumBoard.doneList}" 
+						<h:dataTable id="done" columns="1" value="#{scrumBoardAction.doneList}" 
 							var="doneNote">
 							<h:column>
 								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
