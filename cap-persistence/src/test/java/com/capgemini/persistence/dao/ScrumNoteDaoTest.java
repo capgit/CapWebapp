@@ -3,6 +3,7 @@ package com.capgemini.persistence.dao;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +105,7 @@ public class ScrumNoteDaoTest {
 		note.setDescription(description);
 		note.setScrumBoard(board);
 		note.setState(state);
-
+		note.setDueDate(Calendar.getInstance().getTime());
 		return note;
 
 	}
