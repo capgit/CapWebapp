@@ -13,10 +13,10 @@
 	
 	    <ui:define name="body">
 	    
-			<h2>Tutorial</h2>
+			<h2><h:outputText value="#{messageSource['tutorial.title']}"/></h2>
 			<rich:dataTable value="#{tutorialBean.tutorialLinks}" var="tutorialLink">
 				<h:column>
-					<f:facet name="header">Category</f:facet>
+					<f:facet name="header"><h:outputText value="#{messageSource['tutorial.category']}"/></f:facet>
 					<h:outputText value="#{tutorialLink.category}"/>
 				</h:column>
 				<h:column>
