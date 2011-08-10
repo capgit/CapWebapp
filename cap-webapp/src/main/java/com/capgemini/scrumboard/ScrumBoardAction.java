@@ -18,7 +18,6 @@ import com.capgemini.core.domain.ScrumNote;
  * @author Sanjin Cevro (Capgemini)
  * 
  */
-// TODO: Validation !
 public class ScrumBoardAction extends FormAction {
 
 	private ScrumBoard scrumBoard;
