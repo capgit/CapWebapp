@@ -1,6 +1,7 @@
 package com.capgemini.core.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.capgemini.core.NoteState;
 
@@ -31,6 +34,9 @@ public class ScrumNote implements Serializable {
 	private String headline;
 	private String description;
 	private Integer estimate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dueDate = new Date();
 
 	@Enumerated(EnumType.ORDINAL)
 	private NoteState state;
@@ -127,6 +133,20 @@ public class ScrumNote implements Serializable {
 	 */
 	public void setState(NoteState state) {
 		this.state = state;
+	}
+
+	/**
+	 * @return the dueDate
+	 */
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	/**
+	 * @param dueDate the dueDate to set
+	 */
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
 }
