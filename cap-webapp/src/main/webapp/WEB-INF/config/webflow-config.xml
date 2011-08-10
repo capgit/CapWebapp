@@ -25,6 +25,9 @@
 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
 		<property name="order" value="-2"/>
 		<property name="flowRegistry" ref="flowRegistry" />
+	    <property name="interceptors">
+	        <ref bean="localeChangeInterceptor" />
+	    </property>
 	</bean>
 	
 	<!-- Executes flows: the central entry point into the Spring Web Flow system -->

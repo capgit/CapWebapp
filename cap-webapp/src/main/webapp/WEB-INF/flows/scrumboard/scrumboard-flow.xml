@@ -12,6 +12,7 @@
 	
 	<view-state id="scrumboard">
 		<transition on="createScrumNote" to="scrumboard">
+			<evaluate expression="scrumBoardAction.validate"/>
 			<evaluate expression="scrumBoardAction.createScrumNote" />
 		</transition>
 		<transition on="showScrumBoard" to="scrumboard">

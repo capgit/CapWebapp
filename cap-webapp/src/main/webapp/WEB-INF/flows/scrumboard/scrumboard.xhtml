@@ -11,107 +11,136 @@
 
 		<ui:define name="title">RichFaces SampleScrumboard demo</ui:define>
 		<ui:define name="body">
-			<h3>Dette er en scrumboard demo.</h3>
+			<h3><h:outputText value="#{messageSource['scrumBoard.title']}"/></h3>
 			
-			<h:form>
-				<rich:panel header="Create a new Scrum Note">
+			<h:form prependId="false">
 
+			<h:panelGrid columnClasses="valignNoMinHeight,valign,valign,valign" columns="4">
+				<rich:panel header="#{messageSource['scrumBoard.panelTitle']}" style="width: 250px;">
     				<table class="note">
-<!-- 						<tr> -->
-<!-- 							<td class="header"><h:outputText value="NoteId:" /></td> -->
-<!-- 							<td><h:inputText value="${scrumBoardForm.newNote.noteId}" /></td> -->
-<!-- 						</tr> -->
 						<tr>
-							<td class="header"><h:outputText value="Headline:" /></td>
-							<td><h:inputText value="${scrumBoardForm.newNote.headline}" /></td>
+							<td class="header"><h:outputText value="#{messageSource['scrumBoard.headline']}:" /></td>
+							<td>
+								<h:inputText id="headline" value="${scrumBoardForm.newNote.headline}" required="true" 
+								requiredMessage="#{messageSource['scrumBoard.headline.required']}"/>
+								<rich:message for="headline" />
+							</td>
 						</tr>
 						<tr>
-							<td class="topAlign"><h:outputText value="Description:" /></td>
+							<td class="topAlign"><h:outputText value="#{messageSource['scrumBoard.description']}:" /></td>
 							<td><h:inputTextarea value="${scrumBoardForm.newNote.description}" rows="5"/></td>
 						</tr>
 						<tr>
-							<td class="header"><h:outputText value="Estimate:" /></td>
-							<td><h:inputText value="${scrumBoardForm.newNote.estimate}" /></td>
+							<td class="header"><h:outputText value="#{messageSource['scrumBoard.estimate']}:" /></td>
+							<td>
+								<h:inputText id="estimate" value="${scrumBoardForm.newNote.estimate}" required="true"
+								requiredMessage="#{messageSource['scrumBoard.estimate.required']}"/>
+								<rich:message for="estimate" />
+							</td>
+						</tr>
+						<tr>
+							<td class="header"><h:outputText value="#{messageSource['scrumBoard.dueDate']}:" /></td>
+							<td>
+								<rich:calendar value="${scrumBoardForm.newNote.dueDate}" datePattern="dd.MM.yyyy"/>
+							</td>
 						</tr>
 					</table>
-					<a4j:commandButton action="createScrumNote" value="Create a Scrum Note"/>
-<!-- 					<a4j:commandButton action="showScrumBoard" value="Show Scrum board"/> -->
-
+					<a4j:commandButton action="createScrumNote" value="#{messageSource['scrumBoard.create']}"/>
 				</rich:panel>
-				<p/>
-				<h2>SCRUM BOARD</h2>
+						
+				<rich:panel styleClass="dropTargetPanel" style="width: 200px;">
+					<f:facet name="header">
+						<h:outputText value="#{messageSource['scrumBoard.notStarted']}" />
+					</f:facet>
+					<rich:dropTarget dropValue="notStartedNote"
+						dropListener="#{scrumBoardAction.dropToNotStarted}"
+						acceptedTypes="inProgressNote"
+						render="inProgress,notStarted" />
+						
+					<h:dataTable id="notStarted" columns="1" value="#{scrumBoardAction.notStartedList}"
+						var="notStartedNote" footerClass="footerClass">
+						<h:column>
+							<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
+								<rich:dragSource id="notStartedSource" dragValue="#{notStartedNote}" type="notStartedNote"/>
+								<strong><h:outputText value="#{notStartedNote.headline}" /><br/></strong>
+								<h:outputText value="#{notStartedNote.description}" /><br/>
+								<br/>
+								<b><h:outputText value="#{messageSource['scrumBoard.estimate']}:" /></b>&nbsp;
+								<h:outputText value="#{notStartedNote.estimate}" /><br/>
+								<br/>
+								<b><h:outputText value="#{messageSource['scrumBoard.dueDate']}:" /></b><br/>
+								<h:outputText value="#{notStartedNote.dueDate}">
+									<f:convertDateTime timeZone="CET" pattern="dd.MM.yyyy"/>
+								</h:outputText>
+								<br/>
+								<h:inputHidden value="#{notStartedNote.noteId}"/>
+							</a4j:outputPanel>
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
 
-				<h:panelGrid columnClasses="valign,valign,valign" columns="3" width="100%">
+				<rich:panel styleClass="dropTargetPanel" style="width: 200px;">
+					<f:facet name="header">
+						<h:outputText value="#{messageSource['scrumBoard.inProgress']}" />
+					</f:facet>
+					<rich:dropTarget dropValue="inProgressNote"
+						dropListener="#{scrumBoardAction.dropToInProgress}"
+						acceptedTypes="notStartedNote, doneNote"
+						render="inProgress,notStarted,done" />
 
-					<rich:panel styleClass="dropTargetPanel" >
-						<f:facet name="header">
-							<h:outputText value="Not started" />
-						</f:facet>
-						<rich:dropTarget dropValue="notStartedNote"
-							dropListener="#{scrumBoardAction.dropToNotStarted}"
-							acceptedTypes="inProgressNote"
-							render="inProgress,notStarted" />
-							
-						<h:dataTable id="notStarted" columns="1" value="#{scrumBoardAction.notStartedList}"
-							var="notStartedNote" footerClass="footerClass">
-							<h:column>
-								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
-									<rich:dragSource id="notStartedSource" dragValue="#{notStartedNote}" type="notStartedNote"/>
-									<strong><h:outputText value="#{notStartedNote.headline}" /></strong><br/>
-									<h:outputText value="#{notStartedNote.description}" /><br/>
-									<h:outputText value="#{notStartedNote.estimate}" /><br/>
-									<h:inputHidden value="#{notStartedNote.noteId}" />
-								</a4j:outputPanel>
-							</h:column>
-						</h:dataTable>
-					</rich:panel>
+					<h:dataTable id="inProgress" columns="1" value="#{scrumBoardAction.inProgressList}" 
+						var="inProgressNote">
+						<h:column>
+							<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
+								<rich:dragSource id="inProgressSource" dragValue="#{inProgressNote}" type="inProgressNote"/>
+								<strong><h:outputText value="#{inProgressNote.headline}" /><br/></strong>
+								<h:outputText value="#{inProgressNote.description}" /><br/>
+								<br/>
+								<b><h:outputText value="#{messageSource['scrumBoard.estimate']}:" /></b>&nbsp;
+								<h:outputText value="#{inProgressNote.estimate}" /><br/>
+								<br/>
+								<b><h:outputText value="#{messageSource['scrumBoard.dueDate']}:" /></b><br/>
+								<h:outputText value="#{inProgressNote.dueDate}">
+									<f:convertDateTime timeZone="CET" pattern="dd.MM.yyyy"/>
+								</h:outputText>
+								<br/>
+								<h:inputHidden value="#{inProgressNote.noteId}"/>
+							</a4j:outputPanel>
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
 
-					<rich:panel styleClass="dropTargetPanel">
-						<f:facet name="header">
-							<h:outputText value="In progress" />
-						</f:facet>
-						<rich:dropTarget dropValue="inProgressNote"
-							dropListener="#{scrumBoardAction.dropToInProgress}"
-							acceptedTypes="notStartedNote, doneNote"
-							render="inProgress,notStarted,done" />
+				<rich:panel styleClass="dropTargetPanel" style="width: 200px;">
+					<f:facet name="header">
+						<h:outputText value="#{messageSource['scrumBoard.done']}" />
+					</f:facet>
+					<rich:dropTarget dropValue="doneNote"
+						dropListener="#{scrumBoardAction.dropToDone}"
+						acceptedTypes="inProgressNote"
+						render="inProgress,done" />
 
-						<h:dataTable id="inProgress" columns="1" value="#{scrumBoardAction.inProgressList}" 
-							var="inProgressNote">
-							<h:column>
-								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
-									<rich:dragSource id="inProgressSource" dragValue="#{inProgressNote}" type="inProgressNote"/>
-									<strong><h:outputText value="#{inProgressNote.headline}" /><br/></strong>
-									<h:outputText value="#{inProgressNote.description}" /><br/>
-									<h:outputText value="#{inProgressNote.estimate}" /><br/>
-									<h:inputHidden value="#{inProgressNote.noteId}"/>
-								</a4j:outputPanel>
-							</h:column>
-						</h:dataTable>
-					</rich:panel>
-
-					<rich:panel styleClass="dropTargetPanel">
-						<f:facet name="header">
-							<h:outputText value="Done" />
-						</f:facet>
-						<rich:dropTarget dropValue="doneNote"
-							dropListener="#{scrumBoardAction.dropToDone}"
-							acceptedTypes="inProgressNote"
-							render="inProgress,done" />
-
-						<h:dataTable id="done" columns="1" value="#{scrumBoardAction.doneList}" 
-							var="doneNote">
-							<h:column>
-								<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
-									<rich:dragSource id="doneSource" dragValue="#{doneNote}" type="doneNote"/>
-									<strong><h:outputText value="#{doneNote.headline}" /><br/></strong>
-									<h:outputText value="#{doneNote.description}" /><br/>
-									<h:outputText value="#{doneNote.estimate}" /><br/>
-									<h:inputHidden value="#{doneNote.noteId}"/>
-								</a4j:outputPanel>
-							</h:column>
-						</h:dataTable>
-					</rich:panel>
-				</h:panelGrid>
+					<h:dataTable id="done" columns="1" value="#{scrumBoardAction.doneList}" 
+						var="doneNote">
+						<h:column>
+							<a4j:outputPanel layout="block" styleClass="rf-ind-drag">
+								<rich:dragSource id="doneSource" dragValue="#{doneNote}" type="doneNote"/>
+								<strong><h:outputText value="#{doneNote.headline}" /><br/></strong>
+								<h:outputText value="#{doneNote.description}" /><br/>
+								<br/>
+								<b><h:outputText value="#{messageSource['scrumBoard.estimate']}:" /></b>&nbsp;
+								<h:outputText value="#{doneNote.estimate}" /><br/>
+								<br/>
+								<b><h:outputText value="#{messageSource['scrumBoard.dueDate']}:" /></b><br/>
+								<h:outputText value="#{doneNote.dueDate}">
+									<f:convertDateTime timeZone="CET" pattern="dd.MM.yyyy"/>
+								</h:outputText>
+								<br/>
+								<h:inputHidden value="#{doneNote.noteId}"/>
+							</a4j:outputPanel>
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
+			</h:panelGrid>
 
 			</h:form>
 

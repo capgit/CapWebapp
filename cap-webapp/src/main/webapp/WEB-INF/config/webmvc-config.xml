@@ -26,7 +26,5 @@
 
 	<!-- Dispatches requests mapped to org.springframework.web.servlet.mvc.Controller implementations -->
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
-
-
-
+	
 </beans>
