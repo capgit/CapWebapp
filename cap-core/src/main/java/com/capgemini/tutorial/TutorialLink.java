@@ -1,7 +1,7 @@
 package com.capgemini.tutorial;
 
 /**
- * @author scevro
+ * @author Sanjin Cevro (Capgemini)
  * 
  */
 public class TutorialLink {

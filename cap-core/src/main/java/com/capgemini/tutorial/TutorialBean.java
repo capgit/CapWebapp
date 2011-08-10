@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author scevro
+ * @author Sanjin Cevro (Capgemini)
  *
  */
 public class TutorialBean implements Serializable{
