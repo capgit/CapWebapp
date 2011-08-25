@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.capgemini.core.NoteState;
 import com.capgemini.core.dao.GenericDao;
 import com.capgemini.core.domain.ScrumNote;
@@ -19,7 +21,7 @@ public class ScrumNoteServiceImpl extends GenericServiceImpl<ScrumNote, Long> im
 
 	}
 
-	@Override
+	@Transactional
 	public List<ScrumNote> getScrumNotesByState(NoteState state) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("state", state);
